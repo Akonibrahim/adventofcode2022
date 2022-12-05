@@ -6,7 +6,7 @@ with open("input.txt", "r") as file:
 separator = all_data.index("")
 stacks_inverse,instructions = all_data[0:separator-1], all_data[separator+1:]
 
-def get_stacks(data,num_of_stacks):
+def get_stacks(num_of_stacks):
     global stacks_inverse
     stacks = [[] for _ in range(num_of_stacks)]
     for stack_info in stacks_inverse:
@@ -21,13 +21,13 @@ def shuffle_stack(stacks, part):
     for instruction in instructions:
         num_of_times, from_stack, to_stack = map(int,re.findall(r'\d+', instruction))
         for n in range(num_of_times):
-            if part == -1:
+            if part == "part_1":
                 stacks[to_stack-1].append(stacks[from_stack-1].pop())
             else:
                 stacks[to_stack-1].append(stacks[from_stack-1].pop(-(num_of_times-n)))
     return "".join([a[-1] for a in stacks])
 
-stacks = get_stacks(all_data,9)
-print(shuffle_stack(stacks,-1))
-stacks = get_stacks(all_data,9)
-print(shuffle_stack(stacks,0))
+stacks = get_stacks(9)
+print(shuffle_stack(stacks,"part_1"))
+stacks = get_stacks(9)
+print(shuffle_stack(stacks,"part_2"))
