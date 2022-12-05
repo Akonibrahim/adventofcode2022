@@ -13,6 +13,7 @@ def get_value_for_letter(intersection):
 def part_1(sacks):
     score = 0
     for item in sacks:
+        # score += get_value_for_letter(next(iter(set(item[0:len(item) // 2]) & set(item[len(item) // 2:]))))
         half_point = len(item) // 2
         first, second = set(item[0:half_point]) , set(item[half_point:])
         intersection = first & second
