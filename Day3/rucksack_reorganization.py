@@ -27,15 +27,13 @@ def part_1(sacks):
 def part_2(sacks):
     group = []
     score = 0
-    for index, item in enumerate(sacks):
+    for item in sacks:
         group.append(item)
         if len(group) == 3:
             first, second, third = set(group[0]) , set(group[1]), set(group[2])
             intersection = first & second & third
             intersection = next(iter(intersection))
             score += get_value_for_letter(intersection)
-
-        if (index + 1) % 3 == 0:
             group = []
 
     return score
